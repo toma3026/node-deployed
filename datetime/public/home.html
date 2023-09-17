@@ -7,12 +7,43 @@
 </head>
 <body>
 
-    <h1>Home</h1>
-
-    <p>test1</p>
+    <p>Click the the button 2 times, with exactly 5000 milliseconds between each click, in order to win a price.</p>
+    <button id="button1" type="button">Start</button>
+    <p id="p1"></p>
+    <p id="p2"></p>
     
     <script>
-        console.log("Home");
+        const button1 = document.getElementById("button1");
+        const p1 = document.getElementById("p1");
+        const p2 = document.getElementById("p2");
+
+        let startTime;
+        let stopTime;
+
+        button1.addEventListener("click", (event) => {
+            if (button1.innerText === "Start") {
+                button1.innerText = "Stop";
+                startTime = new Date();
+                p1.innerText = "";
+                p2.innerText = "";
+            }
+            else if (button1.innerText === "Stop") {
+                button1.innerText = "Start";
+                stopTime = new Date();
+
+                difference = stopTime.getTime() - startTime.getTime();
+                p1.innerText = "The time in milliseconds between the clicks were: " + difference;
+                
+                if (difference === 5000) {
+                    p2.innerText = "Congratulations. You have won the price of being precise."
+                }
+                else {
+                    p2.innerText = "You have lost. Try again."
+                }
+
+            }
+        });
+
     </script>
 
 </body>
